@@ -16,28 +16,35 @@ async function fetchIoT() {
     const data = await response.json();
 
     document.getElementById("gas-val").innerText = data.gas;
-    document.getElementById("temp-val").innerText = data.temp + "°C";
+    document.getElementById("temp-val").innerText = data.temp.toFixed(1);
 
+    statusBadge.classList.remove("offline");
+    statusBadge.classList.add("online");
     statusBadge.innerText = "ONLINE";
-    statusBadge.style.background = "#10b981";
 
     const buzText = document.getElementById("buzzer-status");
-    const cards = document.querySelectorAll(".card");
+    const wrapper = document.querySelector(".wrapper");
+    const alarmIcon = document.querySelector(".sensor-icon.alarm");
 
     const isDanger = data.buzzer === true || data.buzzer === "true";
 
     if (isDanger) {
       buzText.innerText = "DANGER!";
-      cards.forEach((c) => c.classList.add("danger-mode"));
+      buzText.style.color = "#ef4444";
+      wrapper.classList.add("danger-mode");
+      alarmIcon.classList.add("danger");
       updatePythonStatus("BAHAYA");
     } else {
-      buzText.innerText = "SAFE";
-      cards.forEach((c) => c.classList.remove("danger-mode"));
+      buzText.innerText = "AMAN";
+      buzText.style.color = "#10b981";
+      wrapper.classList.remove("danger-mode");
+      alarmIcon.classList.remove("danger");
       updatePythonStatus("AMAN");
     }
   } catch (e) {
+    statusBadge.classList.remove("online");
+    statusBadge.classList.add("offline");
     statusBadge.innerText = "OFFLINE";
-    statusBadge.style.background = "#ef4444";
     console.error("ESP32 ERROR:", e);
   }
 }
