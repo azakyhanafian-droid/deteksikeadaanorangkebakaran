@@ -1,0 +1,45 @@
+body {
+    background: #0f172a;
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    margin: 0; padding: 20px;
+    display: flex; justify-content: center;
+}
+
+.container { width: 100%; max-width: 1200px; }
+
+header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 10px;
+}
+
+.status-badge { padding: 5px 15px; border-radius: 20px; font-size: 12px; background: grey; }
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 20px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.sensor-container i { font-size: 30px; color: #38bdf8; margin-bottom: 10px; }
+.sensor-container h2 { font-size: 2.5rem; margin: 5px 0; color: #10b981; }
+
+.vid-card { padding: 10px; grid-column: span 1; }
+.vid-header { margin-bottom: 10px; font-weight: bold; color: #38bdf8; }
+#yolo-stream { width: 100%; border-radius: 15px; border: 2px solid #334155; }
+
+/* Warning Style */
+.danger-mode { background: rgba(239, 68, 68, 0.2); border-color: #ef4444; }
+.danger-mode h2 { color: #ef4444 !important; }
